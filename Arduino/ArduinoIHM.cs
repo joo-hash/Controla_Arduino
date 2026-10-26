@@ -74,13 +74,11 @@ namespace Arduino
         {
             try
             {
-                // Zera o display na regra de negócio
+                // Zera o display e Envia o estado 0 para o Wokwi via serial
                 ArduinoBLL.setDisplay(0);
-
-                // Envia o estado 0 para o Wokwi via serial
                 EnviarEstado();
 
-                // Atualiza a interface gráfica (Bits e textos dos botões)
+                // Atualiza a Bits Mostrados e textos dos botões
                 textBox1.Text = ArduinoBLL.mostraBits(ArduinoBLL.getDisplay());
                 button1.Text = "Ligar";
                 button2.Text = "Ligar";
@@ -135,70 +133,12 @@ namespace Arduino
                 {
                     arduinoDAL.Registrar(i.ToString(), "LIGAR");
                 }
-
-                MessageBox.Show("Todos os dispositivos foram ligados e registrados no banco!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro na comunicação: " + ex.Message);
             }
         }
-
-        //private void button9_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Zera o display na regra de negócio
-        //        ArduinoBLL.setDisplay(0);
-
-        //        // Envia o estado 0 para o Wokwi via serial
-        //        EnviarEstado();
-
-        //        // Atualiza a interface gráfica (Bits e textos dos botões)
-        //        textBox1.Text = ArduinoBLL.mostraBits(ArduinoBLL.getDisplay());
-        //        button1.Text = "Ligar";
-        //        button2.Text = "Ligar";
-        //        button3.Text = "Ligar";
-        //        button4.Text = "Ligar";
-        //        button5.Text = "Ligar";
-        //        button6.Text = "Ligar";
-        //        button7.Text = "Ligar";
-        //        button8.Text = "Ligar";
-
-        //        // Registra a ação no banco de dados para cada dispositivo
-        //        for (int i = 1; i <= 8; i++)
-        //        {
-        //            arduinoDAL.Registrar(i.ToString(), "DESLIGAR");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Erro ao desligar todos os dispositivos: " + ex.Message);
-        //    }
-        //}
-
-
-
-        //private void button10_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (serialPort1 == null || !serialPort1.IsOpen)
-        //        {
-        //            MessageBox.Show("A porta COM5 não está aberta.");
-        //            return;
-        //        }
-
-        //        serialPort1.WriteLine("255");
-        //        serialPort1.BaseStream.Flush();
-
-        //        MessageBox.Show("Comando 255 escrito na " + serialPort1.PortName);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Erro na comunicação: " + ex.Message);
-        //    }
-        //}
 
         private void ArduinoIHM_FormClosing(object sender, FormClosingEventArgs e)
         {
